@@ -20,6 +20,7 @@ export default {
  },
  created(){
    this.getEmployee()
+   console.log(this.$store.getters.allEmployee,'emplayee')
  }
 }
 </script>
