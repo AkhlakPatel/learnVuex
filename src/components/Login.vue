@@ -21,7 +21,7 @@
   </div>
 </template>
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions ,mapGetters} from "vuex";
 import b4a from '../back4app/back4appServices'
 export default {
   name: "Login",
@@ -30,23 +30,31 @@ export default {
       loginModel: {
         username: "",
         password: "",
+        data:''
       },
     };
   },
-  computed: { ...mapState(["status"]) },
+  computed: { 
+    ...mapState({  users: state => state.users.all}) },
   methods: {
-    ...mapActions(["login"]),
+    ...mapActions(["login"], {
+            getAllUsers: 'getAll'}),
+    ...mapGetters(["user"]),
     hanldeLogin(e) {
       e.preventDefault();
       const { username, password } = this.loginModel;
     //   console.log(username, password);
       if (username && password) {
         this.login({ username, password });
+        console.log(this.$store.getters.user)
       }
     },
     getUserInfo(){
-       b4a.getUser()
+       b4a.getUser().then((res)=>{
+         console.log(res)
+       })
     }
   },
+
 };
 </script>

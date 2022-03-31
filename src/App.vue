@@ -3,11 +3,21 @@
     <div id="nav">
       <router-link to="/signup">Signup</router-link> |
       <router-link to="/login">Login</router-link>
-    </div>
     <router-view/>
+    </div>
+      <User/>
   </div>
 </template>
 
+<script>
+import User from './components/User.vue'
+export default {
+  name:'App',
+  components:{
+    User,
+  }
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -15,17 +25,17 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  border: 2px solid #42b983;
+}
+
+#nav {
+  padding: 20px 0px;
+   border: 2px solid #42b983;
   border-radius: 10px;
   width: 300px;
   display: block;
   margin: auto;
   padding-bottom: 40px;
   margin-top: 100px;
-}
-
-#nav {
-  padding: 30px;
 }
 
 #nav a {
@@ -38,6 +48,7 @@
 }
 
 .input {
+  margin-top: 10px;
   width: 250px;
   height: 20px;
   border: 1px solid #42b983;

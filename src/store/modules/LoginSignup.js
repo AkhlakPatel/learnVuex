@@ -1,10 +1,12 @@
 
 import back4app from "../../back4app/back4appServices";
+
 const state = {
     status:'',
-    userData:''
+    all: {}
 };
 const getters = {
+  //  users: state => state.all
 };
 const actions = {
  async signup({  commit }, user) {
@@ -28,7 +30,17 @@ const actions = {
        commit('Loginfailure',error)
      }
      )
-  }
+  },
+  //get user
+  getAll({ commit }) {
+    commit('getAllRequest');
+
+   back4app.getUser()
+        .then(
+            users => commit('getAllSuccess', users),
+            error => commit('getAllFailure', error)
+        );
+},
 };
 const mutations = {
 //   setEmployee: (state, employee) => (state.employee = employee),
@@ -49,7 +61,17 @@ LoginSuccess(state,user){
 LoginFailure(state){
 state.state = {}
 state.user = null
-}
+},
+//
+getAllRequest(state) {
+  state.all = { loading: true };
+},
+getAllSuccess(state, users) {
+  state.all = {  users };
+},
+getAllFailure(state, error) {
+  state.all = { error };
+},
 };
 
 export default {
