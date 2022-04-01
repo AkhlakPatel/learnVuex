@@ -53,6 +53,7 @@ export default {
        b4a.getUser().then((res)=>{
          console.log(res)
        })
+       
     }
   },
 

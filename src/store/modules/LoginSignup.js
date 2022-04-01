@@ -2,11 +2,12 @@
 import back4app from "../../back4app/back4appServices";
 
 const state = {
-    status:'',
-    all: {}
+  all: '',
+  status:''
 };
 const getters = {
   //  users: state => state.all
+  userInfo : state => state.all
 };
 const actions = {
  async signup({  commit }, user) {
@@ -67,8 +68,9 @@ getAllRequest(state) {
   state.all = { loading: true };
 },
 getAllSuccess(state, users) {
-  state.all = {  users };
+  state.all = { items : users };
 },
+// getAllSuccess: (state, users) => (state.all = users),
 getAllFailure(state, error) {
   state.all = { error };
 },

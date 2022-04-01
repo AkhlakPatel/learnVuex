@@ -44,7 +44,7 @@ back4app.Login = async (username, password) => {
   if (response.length > 0) {
     alert("You are logged In");
     // back4app.getUser(username)
-    localStorage.setItem('userInfo',JSON.stringify(username))
+    localStorage.setItem('userLogin',JSON.stringify(username))
 
   } else {
     alert("Envalid username or password");
@@ -55,15 +55,16 @@ back4app.Login = async (username, password) => {
 back4app.getUser = async () => {
 let user = Parse.Object.extend('Signup')
 let userQuery = new Parse.Query(user)
-userQuery.equalTo('username','akhlak')
-userQuery.include('eamil')
+let username = JSON.parse(localStorage.getItem('userLogin'))
+userQuery.equalTo('username',`${username}`)
+userQuery.include('email')
 
 let result = await userQuery.find()
 
 for (let i=0; i<result.length; i++){
   let data = result[i]
   // console.log(data.get('username'),data.get('email'),data.get('password'))
-  let userInfo = data.get('username') + ' ' + data.get('email')
+  let userInfo = {username : data.get('username') + ' ' , email:data.get('email')}
 localStorage.setItem('userInfo',JSON.stringify(userInfo))
   return userInfo
 }
