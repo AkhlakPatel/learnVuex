@@ -2,9 +2,9 @@
     <div>
         <h2>User-Info</h2>
         <ul>
-            <li v-for="user in userInfo" :key="user.id">
-                {{user.username}}
-                {{user.email}}
+            <li v-for="user in userInfo.items" :key="user.id">
+                 {{user}}
+                <!-- {{user.email}} -->
             </li>
         </ul>
     </div>

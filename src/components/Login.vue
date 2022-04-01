@@ -17,6 +17,7 @@
     />
     <br /><br />
     <button class="button" @click="hanldeLogin">Login</button>
+    <button class="button" @click="handleLogout()">Logout</button>
     <button class="button" @click="getUserInfo()">getUser</button>
   </div>
 </template>
@@ -53,7 +54,9 @@ export default {
        b4a.getUser().then((res)=>{
          console.log(res)
        })
-       
+    },
+    handleLogout(){
+      localStorage.clear('userInfo')
     }
   },
 
