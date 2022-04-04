@@ -37,11 +37,39 @@ const actions = {
   //get user information from b4a 
   getAll({ commit }) {
     commit("getAllRequest");
-    back4app.getUser().then(
+    back4app.getAllData().then(
       (users) => commit("getAllSuccess", users),
       (error) => commit("getAllFailure", error)
+      );
+    },
+    //get all user for b4a
+    getAllUsers({ commit }) {
+      commit('getAllUserRequest');
+      back4app.getAllData().then(
+        user=> commit("getAllSuccessUser",user),
+        err => commit("getAllFailureUser",err)
+      )
+    },
+  //update user
+  async update({ commit }, user) {
+    back4app.updateUser(user).then(
+      (user) => {
+        commit("updateSuccess", user);
+      },
+      (error) => {
+        console.log("error", error);
+      }
+    );
+    },
+  //delete user
+  delele({ commit }){
+    // commit('deleteRequest')
+    back4app.deleteUser().then(
+      users=> commit('deleteSuccess',users),
+      err=> commit('deleteFailure',{err:err.toString()})
     );
   },
+  
 };
 const mutations = {
   //   setEmployee: (state, employee) => (state.employee = employee),
@@ -74,6 +102,16 @@ const mutations = {
   getAllFailure(state, error) {
     state.all = { error };
   },
+  getAllUserRequest(state){
+    state.all = {lcoading:true}
+  },
+  getAllSuccessUser(state,users){
+    state.all = {item:users}
+  },
+  updateSuccess(state) {
+    state.status = {};
+  },
+
 };
 
 export default {

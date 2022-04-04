@@ -19,6 +19,7 @@
     <button class="button" @click="hanldeLogin">Login</button>
     <button class="button" @click="handleLogout()">Logout</button>
     <button class="button" @click="getUserInfo()">getUser</button>
+    
   </div>
 </template>
 <script>
@@ -47,18 +48,18 @@ export default {
     //   console.log(username, password);
       if (username && password) {
         this.login({ username, password });
-        console.log(this.$store.getters.user)
       }
     },
     getUserInfo(){
-       b4a.getUser().then((res)=>{
-         console.log(res)
-       })
+       b4a.getUser() 
     },
     handleLogout(){
       localStorage.clear('userInfo')
-    }
+      this.getUserInfo()
+    },
   },
+mounted(){
 
+}
 };
 </script>

@@ -6,15 +6,18 @@
     <router-view/>
     </div>
       <User/>
+      <ShowAllData/>
   </div>
 </template>
 
 <script>
 import User from './components/User.vue'
+import ShowAllData from './components/Show.vue'
 export default {
   name:'App',
   components:{
     User,
+    ShowAllData
   }
 }
 </script>
