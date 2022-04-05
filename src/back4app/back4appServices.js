@@ -52,11 +52,13 @@ back4app.Login = async (username, password) => {
 };
 
 // Get userInfo
-back4app.getUser = async () => {
+back4app.getUser = async (id) => {
+  console.log(id)
 let user = Parse.Object.extend('Signup')
 let userQuery = new Parse.Query(user)
-let username = JSON.parse(localStorage.getItem('userLogin'))
-userQuery.equalTo('username',`${username}`)
+// let username = JSON.parse(localStorage.getItem('userLogin'))
+let objectId = id
+userQuery.equalTo('objectId',`${objectId}`)
 userQuery.include('email')
 
 let result = await userQuery.find()
@@ -75,8 +77,10 @@ back4app.updateUser = async (updateModel) => {
 //  console.log(updateModel)
   var Signup = Parse.Object.extend("Signup");
   let query = new Parse.Query(Signup)
-  let username = JSON.parse(localStorage.getItem('userLogin'))
-  query.equalTo("username", username);
+  // let username = JSON.parse(localStorage.getItem('userLogin'))
+  let id = updateModel.id
+  console.log(id)
+  query.equalTo("objectId",id);
   query.first().then(function (user) {
     if (user) {
       console.log('User found with name: ' + user.get("username") + ' and email: ' + user.get("email"));
@@ -89,13 +93,13 @@ back4app.updateUser = async (updateModel) => {
   });
 }
 //update function
-back4app.update = async (foundPet,updateModel) => {
+back4app.update = async (user,updateModel) => {
   let username = updateModel.username;
   let email = updateModel.email;
-  foundPet.set('username', username);
-  foundPet.set('email', email);
+  user.set('username', username);
+  user.set('email', email);
 
-  foundPet.save().then(function (user) {
+  user.save().then(function (user) {
     console.log('user updated! Name: ' + user.get("username") + ' and new email: ' + user.get("email"));
     localStorage.setItem('userLogin',JSON.stringify(username))
   }).catch(function(error) {
@@ -103,11 +107,12 @@ back4app.update = async (foundPet,updateModel) => {
   });
 }
 //delete user (readthendelete)
-back4app.deleteUser=()=>{
+back4app.deleteUser=(id)=>{
   let Signup = Parse.Object.extend('Signup')
   let query = new Parse.Query(Signup)
-  let username = JSON.parse(localStorage.getItem('userLogin'))
-  query.equalTo('username',username)
+  // let username = JSON.parse(localStorage.getItem('userLogin'))
+  let objectId = id;
+  query.equalTo('objectId',objectId)
   query.first().then(function (user){
     if(user){
       console.log('user found' + user.get('username'))
@@ -136,17 +141,18 @@ back4app.getAllData=async()=>{
   const signup = Parse.Object.extend('Signup')
   let query = new Parse.Query(signup)
  let res =  await query.find()
- let usernames = []
- let emails = []
+ let data = []
  for(let i=0;i<res.length;i++)
  {
    let obj = res[i]
-  let username = obj.get('username')
+   let username = obj.get('username')
    let email = obj.get('email')
-   usernames.push(username)
-   emails.push(email)
+  //  let uid = JSON.parse(JSON.stringify(res))
+  //  let uid1 =  uid[i].objectId
+   let id = obj.id
+   data.push({username,email,id})
+   
   }
-  let data = [usernames,emails]
-  return data
+  return data;  
 }
 export default back4app;

@@ -42,14 +42,7 @@ const actions = {
       (error) => commit("getAllFailure", error)
       );
     },
-    //get all user for b4a
-    getAllUsers({ commit }) {
-      commit('getAllUserRequest');
-      back4app.getAllData().then(
-        user=> commit("getAllSuccessUser",user),
-        err => commit("getAllFailureUser",err)
-      )
-    },
+   
   //update user
   async update({ commit }, user) {
     back4app.updateUser(user).then(
@@ -102,16 +95,9 @@ const mutations = {
   getAllFailure(state, error) {
     state.all = { error };
   },
-  getAllUserRequest(state){
-    state.all = {lcoading:true}
-  },
-  getAllSuccessUser(state,users){
-    state.all = {item:users}
-  },
-  updateSuccess(state) {
-    state.status = {};
-  },
-
+  updateSuccess(){
+    // state.all = { items : users}
+  }
 };
 
 export default {

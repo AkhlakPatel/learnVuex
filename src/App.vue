@@ -6,18 +6,18 @@
     <router-view/>
     </div>
       <User/>
-      <ShowAllData/>
+      <!-- <ShowAllData/> -->
   </div>
 </template>
 
 <script>
 import User from './components/User.vue'
-import ShowAllData from './components/Show.vue'
+// import ShowAllData from './components/Show.vue'
 export default {
   name:'App',
   components:{
     User,
-    ShowAllData
+    // ShowAllData
   }
 }
 </script>
@@ -64,4 +64,14 @@ export default {
   background-color:#42b983;
   color: white;
 }
+.table_center{
+margin-left: auto;
+margin-right: auto;
+margin-top: 20px;
+background-color: cadetblue;
+color: black;
+border: 2px solid black;
+border-radius: 10px;
+padding: 10px;
+  }
 </style>

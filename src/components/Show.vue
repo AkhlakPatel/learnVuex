@@ -1,48 +1,53 @@
 <template>
   <div>
     <!-- <h2>All users :</h2> -->
-    <table >
-      <tr v-for="user in userInfo.username" :key="user.id">
-        <th>{{ user}}</th>
-      </tr>
-      <tr v-for="user in users.email" :key="user.id" class="email">
-        <th>{{user}}</th>
-        <button class="button">Update</button>
-      </tr>
-    </table>
+ <table border="1" class="table_center">
+  <tr>
+    <th>ObjectId</th>  
+    <th>Username</th>  
+    <th>Email</th>  
+  </tr>
+  <tr v-for="user in users" :key="user.id">
+    <td>{{user.id}}</td>
+    <td>{{user.username}}</td>
+    <td>{{user.email}}</td>
+  </tr>
+</table>
   </div>
 </template>
 <script>
-// import b4a from "../back4app/back4appServices";
-import {mapActions,mapGetters} from 'vuex'
+import b4a from "../back4app/back4appServices";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Show",
-   computed:mapGetters(["userInfo"]),
+  computed: mapGetters(["userInfo"]),
   data() {
     return {
-      users: {
-        username: "",
-        email: "",
-      },
+      users: {},
     };
   },
   mounted() {
-    // b4a.getAllData().then((res) => {
-    //   this.users.username = res.usernames;
-    //   this.users.email = res.emails;
-    // });
-    console.log(this.getAllUser)
+    b4a.getAllData().then((res) => {
+      this.users = res
+  console.log(this.users)
+    });
+    // console.log(this.getAllUser)
   },
-  methods:{
-      ...mapActions(['getAllUser'])
-  }
+  methods: {
+    ...mapActions(["getAllUser"]),
+  },
 };
 </script>
 
 <style scoped>
-.email{
-  position: relative;
-  top: -140px;
-  left: 126px;
-}
+.table_center{
+margin-left: auto;
+margin-right: auto;
+margin-top: 20px;
+background-color: cadetblue;
+color: black;
+border: 2px solid black;
+border-radius: 10px;
+padding: 10px;
+  }
 </style>

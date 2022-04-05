@@ -19,7 +19,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../components/Login.vue')
   },
   {
-    path: '/update',
+    path: '/update/:id',
     name:'Update',
     component: () => import(/* webpackChunkName: "about" */ '../components/Update.vue')
   }
