@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="login">
     <br />
     <input
       class="input"
@@ -63,3 +63,15 @@ mounted(){
 }
 };
 </script>
+<style scoped>
+.login {
+  padding: 20px 0px;
+   border: 2px solid #42b983;
+  border-radius: 10px;
+  width: 300px;
+  display: block;
+  margin: auto;
+  padding-bottom: 40px;
+  margin-top: 30px;
+}
+</style>

@@ -22,6 +22,16 @@ const routes = [
     path: '/update/:id',
     name:'Update',
     component: () => import(/* webpackChunkName: "about" */ '../components/Update.vue')
+  },
+  {
+    path:'/list',
+    name:'List',
+    component: () => import(/* webpackChunkName: "about" */ '../components/User.vue')
+  },
+  {
+    path:'/search',
+    name:'Search',
+    component: () => import(/* webpackChunkName: "about" */ '../components/Search.vue')
   }
 ]
 

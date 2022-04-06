@@ -1,49 +1,44 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/signup">Signup</router-link> |
-      <router-link to="/login">Login</router-link>
+      <span><router-link to="/signup">Signup</router-link></span>
+      <span><router-link to="/login">Login</router-link></span>
+      <span><router-link to="/list"> List</router-link></span>
+      <span><router-link to="/search">Search</router-link></span>
     <router-view/>
     </div>
-      <User/>
-      <!-- <ShowAllData/> -->
   </div>
 </template>
 
 <script>
-import User from './components/User.vue'
-// import ShowAllData from './components/Show.vue'
 export default {
   name:'App',
-  components:{
-    User,
-    // ShowAllData
-  }
+  
 }
 </script>
 <style>
+
 #app {
+  margin: 0;
+  padding: 0;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 20px 0px;
-   border: 2px solid #42b983;
-  border-radius: 10px;
-  width: 300px;
-  display: block;
-  margin: auto;
-  padding-bottom: 40px;
-  margin-top: 100px;
+  margin-top: 30px;
+  background-color: #bbd6ff;
+  width: 100vw;
+  height: 100vh;
 }
 
 #nav a {
   font-weight: bold;
   color: #2c3e50;
+  padding: 2px;
+}
+#nav span {
+  margin-top: 10px;
 }
 
 #nav a.router-link-exact-active {
@@ -57,6 +52,7 @@ export default {
   border: 1px solid #42b983;
   border-radius: 5px;
   color: black;
+  text-align: center;
 }
 .button{
   width: 70px;
@@ -68,7 +64,7 @@ export default {
 margin-left: auto;
 margin-right: auto;
 margin-top: 20px;
-background-color: cadetblue;
+background-color: #8fd1e5c7;
 color: black;
 border: 2px solid black;
 border-radius: 10px;
