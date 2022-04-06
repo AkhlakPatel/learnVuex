@@ -1,8 +1,6 @@
 <template>
   <div>
     <h2>User-Info</h2>
-  
-    <button class="button" @click="deleteUser">Delete</button>
     <table border="2" class="table_center">
       <tr>
         <th>ObjectId</th>
@@ -22,7 +20,7 @@
 </template>
 
 <script>
-import b4a from "../back4app/back4appServices";
+// import b4a from "../back4app/back4appServices";
 import { mapGetters, mapActions } from "vuex";
 export default {
   name: "User",
@@ -32,13 +30,10 @@ export default {
     this.getAll();
   },
   methods: {
-    ...mapActions(["getAll"], {
-      // getAllUsers: 'getAll',
-      deleteUser: "delete",
-    }),
+    ...mapActions(["getAll","delete"]),
     deleteUser(id) {  
-      b4a.deleteUser(id);
-      // console.log(id)
+      // b4a.deleteUser(id);
+      this.delete(id)
     },
   },
 };

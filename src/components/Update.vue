@@ -22,7 +22,7 @@
   </div>
 </template>
 <script>
-import b4a from '../back4app/back4appServices'
+// import b4a from '../back4app/back4appServices'
 import { mapActions } from "vuex";
 export default {
   name: "User",
@@ -36,7 +36,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["update",'getAll']),
+    ...mapActions(["update",'getAll','getUser']),
 
     updateUser() {
       let id = this.$route.params.id
@@ -44,13 +44,13 @@ export default {
       this.update(this.updateModel);
     },
   },
- async mounted(){
-   let id = this.$route.params.id
-   b4a.getUser(id).then((res)=>{
-     console.log(res)
-     this.updateModel = res
-   })
-
- }
+//  async mounted(){
+  //  let id = this.$route.params.id
+  //  b4a.getUser(id).then((res)=>{
+  //    console.log(res)
+  //    this.updateModel = res
+  //  })
+  
+//  }
 };
 </script>

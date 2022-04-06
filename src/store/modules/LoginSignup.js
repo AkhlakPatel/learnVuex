@@ -42,6 +42,12 @@ const actions = {
       (error) => commit("getAllFailure", error)
       );
     },
+
+  // get single user from b4a
+  getUser({ commit },id) {
+    commit("getAllRequest");
+    back4app.getUser(id)
+    },
    
   //update user
   async update({ commit }, user) {
@@ -55,13 +61,10 @@ const actions = {
     );
     },
   //delete user
-  delele({ commit }){
-    // commit('deleteRequest')
-    back4app.deleteUser().then(
-      users=> commit('deleteSuccess',users),
-      err=> commit('deleteFailure',{err:err.toString()})
-    );
-  },
+  delete({ commit }, id) {
+    commit('deleteRequest', id);
+    back4app.deleteUser(id)
+}
   
 };
 const mutations = {
@@ -97,7 +100,16 @@ const mutations = {
   },
   updateSuccess(){
     // state.all = { items : users}
-  }
+  },
+  deleteRequest(state, id) {
+    // add 'deleting:true' property to user being deleted
+    state.all.items = state.all.items.map(user =>
+        user.id === id
+            ? { ...user, deleting: true }
+            : user
+    )
+},
+ 
 };
 
 export default {

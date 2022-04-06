@@ -107,7 +107,7 @@ back4app.update = async (user,updateModel) => {
   });
 }
 //delete user (readthendelete)
-back4app.deleteUser=(id)=>{
+back4app.deleteUser=(id )=>{
   let Signup = Parse.Object.extend('Signup')
   let query = new Parse.Query(Signup)
   // let username = JSON.parse(localStorage.getItem('userLogin'))
@@ -115,7 +115,7 @@ back4app.deleteUser=(id)=>{
   query.equalTo('objectId',objectId)
   query.first().then(function (user){
     if(user){
-      console.log('user found' + user.get('username'))
+      console.log('User found : ' + user.get('username'))
       back4app.delete(user)
     } else {
       console.log('Nothing Found , please try again')

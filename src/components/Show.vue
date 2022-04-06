@@ -16,7 +16,7 @@
   </div>
 </template>
 <script>
-import b4a from "../back4app/back4appServices";
+// import b4a from "../back4app/back4appServices";
 import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Show",
@@ -26,13 +26,13 @@ export default {
       users: {},
     };
   },
-  mounted() {
-    b4a.getAllData().then((res) => {
-      this.users = res
-  console.log(this.users)
-    });
+  // mounted() {
+  //   b4a.getAllData().then((res) => {
+  //     this.users = res
+  // console.log(this.users)
+  //   });
     // console.log(this.getAllUser)
-  },
+  // },
   methods: {
     ...mapActions(["getAllUser"]),
   },

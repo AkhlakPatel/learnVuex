@@ -18,13 +18,13 @@
     <br /><br />
     <button class="button" @click="hanldeLogin">Login</button>
     <button class="button" @click="handleLogout()">Logout</button>
-    <button class="button" @click="getUserInfo()">getUser</button>
+    <!-- <button class="button" @click="getUserInfo()">getUser</button> -->
     
   </div>
 </template>
 <script>
 import { mapState, mapActions ,mapGetters} from "vuex";
-import b4a from '../back4app/back4appServices'
+// import b4a from '../back4app/back4appServices'
 export default {
   name: "Login",
   data() {
@@ -50,12 +50,12 @@ export default {
         this.login({ username, password });
       }
     },
-    getUserInfo(){
-       b4a.getUser() 
-    },
+    // getUserInfo(){
+    //    b4a.getUser() 
+    // },
     handleLogout(){
       localStorage.clear('userInfo')
-      this.getUserInfo()
+      // this.getUserInfo()
     },
   },
 mounted(){
