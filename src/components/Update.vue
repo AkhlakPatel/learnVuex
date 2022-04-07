@@ -42,6 +42,7 @@ export default {
       let id = this.$route.params.id
       this.updateModel.id = id
       this.update(this.updateModel);
+      this.$router.push('/list')
     },
   },
 //  async mounted(){

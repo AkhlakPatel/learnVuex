@@ -8,11 +8,13 @@
         <th>Email</th>
         <th>Operations</th>
       </tr>
-      <tr v-for="item in userInfo.items" :key="item.id">
-        <td>{{item.id}}</td>
-        <td>{{item.username}}</td>
-        <td>{{item.email}}</td>
-        <router-link :to="'/update/'+item.id"> <button class="button">Update</button> </router-link>
+      <tr v-for="item in users" :key="item.id">
+        <td>{{ item.id }}</td>
+        <td>{{ item.username }}</td>
+        <td>{{ item.email }}</td>
+        <router-link :to="'/update/' + item.id">
+          <button class="button">Update</button>
+        </router-link>
         <button class="button" @click="deleteUser(item.id)">Delete</button>
       </tr>
     </table>
@@ -20,20 +22,20 @@
 </template>
 
 <script>
-// import b4a from "../back4app/back4appServices";
 import { mapGetters, mapActions } from "vuex";
 export default {
   name: "User",
-  computed: mapGetters(["userInfo"]),
+  computed:{ 
+    ...mapGetters(["users"])},
 
   created() {
     this.getAll();
   },
   methods: {
-    ...mapActions(["getAll","delete"]),
-    deleteUser(id) {  
+    ...mapActions(["getAll", "delete"]),
+    deleteUser(id) {
       // b4a.deleteUser(id);
-      this.delete(id)
+      this.delete(id);
     },
   },
 };

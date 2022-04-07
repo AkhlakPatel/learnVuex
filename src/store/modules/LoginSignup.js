@@ -1,12 +1,13 @@
 import back4app from "../../back4app/back4appServices";
 
 const state = {
-  all: "",
+  all: {},
   status: "",
+
 };
 const getters = {
-  //  users: state => state.all
-  userInfo: (state) => state.all,
+   users: state => state.all,
+  userInfo: (state) => state.all,   
 };
 const actions = {
   //function for signup
@@ -92,7 +93,15 @@ const mutations = {
     state.all = { loading: true };
   },
   getAllSuccess(state, users) {
-    state.all = { items: users };
+    let data = [];
+    for (let i = 0; i < users.length; i++) {
+      let obj = users[i];
+      let username = obj.get("username");
+      let email = obj.get("email");
+      let id = obj.id;
+      data.push({ username, email, id });
+    }
+    state.all = data
   },
   // getAllSuccess: (state, users) => (state.all = users),
   getAllFailure(state, error) {

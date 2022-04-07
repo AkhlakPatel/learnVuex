@@ -48,6 +48,7 @@ export default {
     //   console.log(username, password);
       if (username && password) {
         this.login({ username, password });
+        this.$router.push('/list')
       }
     },
     // getUserInfo(){

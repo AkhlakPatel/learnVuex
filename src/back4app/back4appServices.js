@@ -101,7 +101,7 @@ back4app.update = async (user,updateModel) => {
 
   user.save().then(function (user) {
     console.log('user updated! Name: ' + user.get("username") + ' and new email: ' + user.get("email"));
-    localStorage.setItem('userLogin',JSON.stringify(username))
+    // localStorage.setItem('userLogin',JSON.stringify(username))
   }).catch(function(error) {
     console.log('Error: ' + error.message);
   });
@@ -141,18 +141,18 @@ back4app.getAllData=async()=>{
   const signup = Parse.Object.extend('Signup')
   let query = new Parse.Query(signup)
  let res =  await query.find()
- let data = []
- for(let i=0;i<res.length;i++)
- {
-   let obj = res[i]
-   let username = obj.get('username')
-   let email = obj.get('email')
-  //  let uid = JSON.parse(JSON.stringify(res))
-  //  let uid1 =  uid[i].objectId
-   let id = obj.id
-   data.push({username,email,id})
-   
-  }
-  return data;  
+//  let data = []
+//  for(let i=0;i<res.length;i++)
+//  {
+//    let obj = res[i]
+//    let username = obj.get('username')
+//    let email = obj.get('email')
+//   //  let uid = JSON.parse(JSON.stringify(res))
+//   //  let uid1 =  uid[i].objectId
+//    let id = obj.id
+//    data.push({username,email,id})
+//   }
+  // return data;  
+  return res
 }
 export default back4app;

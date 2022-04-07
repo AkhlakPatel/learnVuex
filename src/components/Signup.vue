@@ -44,6 +44,7 @@ export default {
     ...mapActions(["signup"]),
     handleSubmit() {
       this.signup(this.signupModel);
+      this.$router.push('/login')
     },
   },
 };

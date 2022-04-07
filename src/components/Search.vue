@@ -25,17 +25,17 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["userInfo"]),
+    ...mapGetters(["userInfo","users"]),
     resultQuery() {
       if (this.searchQuery) {
-        return this.userInfo.items.filter((item) => {
+        return this.users.filter((item) => {
           return this.searchQuery
             .toLowerCase()
             .split(" ")
             .every((v) => item.username.toLowerCase().includes(v));
         });
       } else {
-        return this.userInfo.items;
+        return this.users;
       }
     },
   },
